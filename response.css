@@ -1,0 +1,214 @@
+/* response.css
+   Regras de responsividade e acessibilidade que sobrescrevem estilos base
+   Carregado após styles.css
+*/
+
+/* Layout fluido */
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem
+}
+
+/* Header: empilha em telas pequenas */
+.search-container {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: .75rem 0
+}
+
+.logo {
+    height: 88px;
+    max-width: 240px
+}
+
+/* Input e botão melhor toque em mobile */
+.search-input {
+    flex: 1;
+    min-width: 140px;
+    padding: .6rem .75rem;
+    height: 44px;
+    border-radius: 6px
+}
+
+.search-btn {
+    height: 44px;
+    padding: .5rem .9rem;
+    border-radius: 6px
+}
+
+/* Grid responsivo: manter 3 colunas no desktop para preservar tamanho original dos cards */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* comportamento original em telas largas */
+    gap: 1.25rem;
+    align-items: start;
+}
+
+/* Cartões: tamanho e imagem adaptáveis */
+.product-card {
+    padding: 20px; /* restaurando padding original */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .24s ease, box-shadow .24s ease;
+}
+
+.product-image,
+img.product-image {
+    width: 100%;
+    height: auto; /* usar altura automática com aspect-ratio para responsividade */
+    aspect-ratio: 16/9; /* mantém proporção consistente */
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: .75rem;
+    display: block;
+    max-width: 100%;
+}
+
+/* Tipografia responsiva */
+.section-title {
+    font-size: clamp(1rem, 2.2vw, 1.25rem)
+}
+
+.product-title {
+    font-size: 16px; /* restaurando tamanho original */
+    height: 40px; /* restaurando altura original para consistência */
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.product-price {
+    font-size: 28px; /* restaurando tamanho original */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Hero adaptável */
+.hero {
+    min-height: 220px;
+    padding: 1.25rem 1rem;
+    background-position: center
+}
+
+.hero h1 {
+    font-size: clamp(1.5rem, 4vw, 2.8rem)
+}
+
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem)
+}
+
+/* Ajustes por breakpoint */
+@media (max-width:1024px) {
+    .logo {
+        height: 72px
+    }
+
+    .product-image {
+        padding-bottom: 62.5%
+    }
+
+    /* telas médias: duas colunas */
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width:768px) {
+    .logo {
+        height: 60px
+    }
+
+    .search-container {
+        justify-content: space-between
+    }
+
+    .products-grid {
+        gap: 1rem
+    }
+
+    .product-title {
+        min-height: 2.6rem
+    }
+}
+
+@media (max-width:480px) {
+    .logo {
+        height: 48px
+    }
+
+    .search-container {
+        align-items: stretch
+    }
+
+    .search-btn {
+        width: 44px;
+        padding: 0
+    }
+
+    .product-card {
+        padding: .75rem
+    }
+
+    .product-price {
+        font-size: 1rem
+    }
+
+    .hero {
+        min-height: 160px
+    }
+}
+
+/* Preferências do usuário */
+@media (prefers-reduced-motion: reduce) {
+
+    .product-card,
+    .search-btn {
+        transition: none
+    }
+}
+
+/* Focus visible para acessibilidade */
+:focus-visible {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px
+}
+
+/* (Modo escuro removido) */
+
+/* Impressão */
+@media print {
+
+    header,
+    .hero,
+    .search-container,
+    .footer {
+        display: none
+    }
+
+    .product-card {
+        box-shadow: none;
+        border: 1px solid #ddd
+    }
+}
+
+/* Utilitários */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap
+}
+
+@media (max-width:600px) {
+    /* celular: uma coluna e imagens um pouco menores para melhor encaixe */
+    .products-grid { grid-template-columns: 1fr; }
+    .product-image, img.product-image { aspect-ratio: 4/3; max-height: 150px; }
+}
