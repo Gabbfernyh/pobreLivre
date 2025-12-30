@@ -110,11 +110,7 @@ img.product-image {
     .logo {
         height: 72px
     }
-
-    .product-image {
-        padding-bottom: 62.5%
-    }
-
+    /* remover padding-bottom que criava altura zero para <img> em alguns browsers/mobile */
     /* telas médias: duas colunas */
     .products-grid { grid-template-columns: repeat(2, 1fr); }
 }
